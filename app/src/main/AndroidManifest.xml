@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lxm.chapter_2">
+
+    <permission
+        android:name="com.lxm.chapter_2.permission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.lxm.PROVIDER"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.lxm.chapter_2.permission.ACCESS_BOOK_SERVICE" />
+    <uses-permission android:name="com.lxm.PROVIDER" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="standard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SecondActivity"
+            android:configChanges="screenLayout"
+            android:label="@string/app_name"
+            android:process=":remote" />
+
+        <service
+            android:name=".Messenger.MessengerService"
+            android:process=":remote" />
+
+        <activity android:name=".Messenger.MessengerActivity" />
+
+        <service
+            android:name=".aidlManager.BookManagerService"
+            android:process=":remote" />
+
+        <activity android:name=".aidlManager.BookManagerActivity" />
+
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="com.lxm.chapter_2.book.provider"
+            android:permission="com.lxm.PROVIDER"
+            android:process=":provider" />
+
+        <activity android:name=".provider.ProviderActivity" />
+
+        <service
+            android:name=".socket.TCPServerService"
+            android:process=":remote" />
+
+        <activity android:name=".socket.TCPClientActivity" />
+
+        <service
+            android:name=".binderPool.BinderPoolService"
+            android:process=":remote" />
+
+        <activity android:name=".binderPool.BinderPoolActivity"></activity>
+    </application>
+
+</manifest>
